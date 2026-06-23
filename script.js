@@ -279,8 +279,19 @@ const obs = new IntersectionObserver((entries) => {
 }, { rootMargin: `-64px 0px -65% 0px`, threshold: 0 });
 watched.forEach(s => obs.observe(s));
 
-document.getElementById('hamburger').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
-document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+// হ্যামবার্গার ক্লিক করলে মেনু খোলা/বন্ধ ও স্ক্রল লক
+document.getElementById('hamburger').addEventListener('click', function() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.classList.toggle('open');
+    const isOpen = navLinks.classList.contains('open');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+
+// মেনুর কোনো লিংকে ক্লিক করলে মেনু বন্ধ হবে এবং স্ক্রল আবার চালু হবে
+document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', function() {
+    document.getElementById('navLinks').classList.remove('open');
+    document.body.style.overflow = '';
+}));document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
 
 const toTopBtn = document.getElementById('toTop');
 window.addEventListener('scroll', () => toTopBtn.classList.toggle('show', window.scrollY > 400));
