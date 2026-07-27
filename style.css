@@ -892,6 +892,13 @@ header {
   margin-bottom: 4px;
 }
 
+/* Blog CTA Button */
+.blog-cta {
+  text-align: center;
+  margin-top: 40px;
+}
+
+
 /* =================================================
    16. CONTACT SECTION
    ================================================= */
