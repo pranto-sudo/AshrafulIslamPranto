@@ -361,7 +361,7 @@ async function fetchBlogPosts() {
             <p class="blog-date">${new Date(post.pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
             <h3>${post.title}</h3>
             <p>${post.description.replace(/<[^>]*>/g, '').substring(0, 120)}...</p>
-            <a href="${post.link}" target="_blank" rel="noopener noreferrer" class="learn">Read More &rarr;</a>
+            <a href="${post.link}" rel="noopener noreferrer" class="learn">Read More &rarr;</a>
           </div>
         `;
       }).join('');
