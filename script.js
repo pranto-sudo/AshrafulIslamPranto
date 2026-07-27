@@ -1,4 +1,4 @@
-// Dark/Light toggle
+// ==================== ডার্ক মোড টগল ====================
 const darkToggle = document.getElementById('darkModeToggle');
 darkToggle.addEventListener('click', () => {
   document.body.classList.toggle('dark');
@@ -11,9 +11,10 @@ if (localStorage.getItem('darkMode') === 'true') {
   darkToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
 }
 
+// ==================== বর্তমান বছর ====================
 document.getElementById('currentYear').innerText = new Date().getFullYear();
 
-// Animated Skill Bars
+// ==================== অ্যানিমেটেড স্কিল বার (Intersection Observer) ====================
 const skillBars = document.querySelectorAll('.bar span');
 const observerSkills = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -31,7 +32,7 @@ const observerSkills = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 skillBars.forEach(bar => observerSkills.observe(bar));
 
-// Skeleton helper
+// ==================== স্কেলেটন হেল্পার ====================
 function showSkeleton(containerId, count) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -49,7 +50,7 @@ function showSkeleton(containerId, count) {
   container.innerHTML = skeletonHtml;
 }
 
-// Services data
+// ==================== সার্ভিস ডেটা ও ডাইনামিক রেন্ডার ====================
 const serviceDetails = [
   { name: "SEO", iconClass: "fa-solid fa-magnifying-glass-chart", desc: "Comprehensive Search Engine Optimization to rank on first page, drive organic traffic, and increase conversions sustainably." },
   { name: "Google Ads (PPC)", iconClass: "fa-brands fa-google", desc: "High-ROI Google Ads management. From keyword research to conversion tracking, I maximize your ad spend efficiency." },
@@ -73,6 +74,7 @@ if (servicesGridEl) {
       <span class="learn" data-service-index="${index}">Learn More →</span>
     </div>
   `).join('');
+
   document.querySelectorAll('.learn[data-service-index]').forEach(btn => {
     btn.addEventListener('click', function() {
       const idx = parseInt(this.getAttribute('data-service-index'));
@@ -105,7 +107,7 @@ if (servicesGridEl) {
   });
 }
 
-// Portfolio data
+// ==================== পোর্টফোলিও ডেটা ও ফিল্টার ====================
 const portfolioData = [
   { category: "seo", title: "UrbanThreads Fashion", challenge: "Stuck on page 3 with no organic sales.", solution: "Technical SEO + content cluster strategy.", result: "+187% organic sales", icon: "fa-magnifying-glass-chart" },
   { category: "ads", title: "CloudDesk Software", challenge: "High ad spend, poor lead quality.", solution: "Restructured campaigns & landing pages.", result: "-42% cost per lead", icon: "fa-bullhorn" },
@@ -118,30 +120,31 @@ const portfolioData = [
 const caseGrid = document.getElementById('caseGrid');
 if (caseGrid) {
   showSkeleton('caseGrid', 6);
-  setTimeout(() => {
-    caseGrid.innerHTML = portfolioData.map(item => `
-      <div class="card" data-cat="${item.category}">
-        <div class="case-thumb"><i class="fa-solid ${item.icon}"></i></div>
-        <p class="case-meta">${item.category === 'seo' ? 'SEO Strategy' : (item.category === 'ads' ? 'Paid Ads Campaign' : 'Social Media Growth')}</p>
-        <h3>${item.title}</h3>
-        <p class="case-row"><b>Challenge:</b> ${item.challenge}</p>
-        <p class="case-row"><b>Solution:</b> ${item.solution}</p>
-        <span class="badge-gold"><i class="fa-solid fa-arrow-trend-up"></i> ${item.result}</span>
-      </div>
-    `).join('');
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const portfolioCards = document.querySelectorAll('#caseGrid .card');
-    const applyFilter = (val) => portfolioCards.forEach(card => card.style.display = (val === 'all' || card.dataset.cat === val) ? 'block' : 'none');
-    filterBtns.forEach(btn => btn.addEventListener('click', function() {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      applyFilter(this.dataset.filter);
-    }));
-    applyFilter('all');
-  }, 300);
+  // 🔧 পরিবর্তন: setTimeout এর বদলে সরাসরি ডেটা রেন্ডার করলাম (কারণ ডেটা লোকাল)
+  // এখনই রেন্ডার করছি, কারণ setTimeout অনিশ্চিত
+  caseGrid.innerHTML = portfolioData.map(item => `
+    <div class="card" data-cat="${item.category}">
+      <div class="case-thumb"><i class="fa-solid ${item.icon}"></i></div>
+      <p class="case-meta">${item.category === 'seo' ? 'SEO Strategy' : (item.category === 'ads' ? 'Paid Ads Campaign' : 'Social Media Growth')}</p>
+      <h3>${item.title}</h3>
+      <p class="case-row"><b>Challenge:</b> ${item.challenge}</p>
+      <p class="case-row"><b>Solution:</b> ${item.solution}</p>
+      <span class="badge-gold"><i class="fa-solid fa-arrow-trend-up"></i> ${item.result}</span>
+    </div>
+  `).join('');
+
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const portfolioCards = document.querySelectorAll('#caseGrid .card');
+  const applyFilter = (val) => portfolioCards.forEach(card => card.style.display = (val === 'all' || card.dataset.cat === val) ? 'block' : 'none');
+  filterBtns.forEach(btn => btn.addEventListener('click', function() {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    applyFilter(this.dataset.filter);
+  }));
+  applyFilter('all');
 }
 
-// Blog fetch
+// ==================== ব্লগ ফেচ (RSS to JSON) ====================
 async function fetchBlogPosts() {
   const blogGrid = document.getElementById('blogGrid');
   if (!blogGrid) return;
@@ -181,7 +184,7 @@ async function fetchBlogPosts() {
 }
 fetchBlogPosts();
 
-// Form handling
+// ==================== ফর্ম হ্যান্ডলিং (সঠিক হানিপট চেক) ====================
 const form = document.getElementById('contactForm');
 const successMsgDiv = document.getElementById('successMsg');
 const errorMsgDiv = document.getElementById('formErrorMsg');
@@ -201,6 +204,7 @@ form.addEventListener('submit', async function(e) {
   errorMsgDiv.style.display = 'none';
   successMsgDiv.style.display = 'none';
   
+  // 🔧 পরিবর্তন: হানিপট ফিল্ডের নাম ও আইডি 'honeypot' করা হয়েছে, এখন এটি সঠিকভাবে কাজ করবে
   const honeypot = document.getElementById('honeypot').value;
   if (honeypot !== "") {
     errorMsgDiv.innerText = 'Spam detected. Your message was not sent.';
@@ -258,7 +262,7 @@ form.addEventListener('submit', async function(e) {
   }
 });
 
-// Modal logic
+// ==================== মডাল লজিক ====================
 const modalElem = document.getElementById('strategyModal');
 const openModalBtn = document.getElementById('openStrategyModalBtn');
 const closeModalSpan = document.querySelector('#strategyModal .close-modal');
@@ -266,7 +270,7 @@ if (openModalBtn) openModalBtn.addEventListener('click', (e) => { e.preventDefau
 if (closeModalSpan) closeModalSpan.onclick = () => modalElem.style.display = 'none';
 window.onclick = (event) => { if (event.target == modalElem) modalElem.style.display = 'none'; };
 
-// Nav active highlight
+// ==================== নেভিগেশন অ্যাক্টিভ হাইলাইট ====================
 const navMap = {};
 document.querySelectorAll('#navLinks a').forEach(a => navMap[a.getAttribute('href').slice(1)] = a);
 const watched = Object.keys(navMap).map(id => document.getElementById(id)).filter(Boolean);
@@ -279,20 +283,21 @@ const obs = new IntersectionObserver((entries) => {
 }, { rootMargin: `-64px 0px -65% 0px`, threshold: 0 });
 watched.forEach(s => obs.observe(s));
 
-// হ্যামবার্গার ক্লিক করলে মেনু খোলা/বন্ধ ও স্ক্রল লক
+// ==================== হ্যামবার্গার মেনু ====================
+// 🔧 পরিবর্তন: ডুপ্লিকেট ইভেন্ট লিসেনার সরানো হয়েছে
 document.getElementById('hamburger').addEventListener('click', function() {
-    const navLinks = document.getElementById('navLinks');
-    navLinks.classList.toggle('open');
-    const isOpen = navLinks.classList.contains('open');
-    document.body.style.overflow = isOpen ? 'hidden' : '';
+  const navLinks = document.getElementById('navLinks');
+  navLinks.classList.toggle('open');
+  const isOpen = navLinks.classList.contains('open');
+  document.body.style.overflow = isOpen ? 'hidden' : '';
 });
 
-// মেনুর কোনো লিংকে ক্লিক করলে মেনু বন্ধ হবে এবং স্ক্রল আবার চালু হবে
 document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', function() {
-    document.getElementById('navLinks').classList.remove('open');
-    document.body.style.overflow = '';
-}));document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+  document.getElementById('navLinks').classList.remove('open');
+  document.body.style.overflow = '';
+}));
 
+// ==================== টু টপ বাটন ====================
 const toTopBtn = document.getElementById('toTop');
 window.addEventListener('scroll', () => toTopBtn.classList.toggle('show', window.scrollY > 400));
 toTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
