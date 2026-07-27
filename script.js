@@ -584,9 +584,37 @@ fetchBlogPosts();
 
   hamburger.addEventListener('click', toggleMenu);
 
-  // Close menu when clicking a nav link
+  // Handle nav link clicks - smooth scroll to section
   navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeMenu);
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+
+      // Only handle internal anchor links
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+
+        const targetId = href.substring(1);
+        const targetEl = document.getElementById(targetId);
+
+        if (targetEl) {
+          // Close mobile menu first
+          closeMenu();
+
+          // Smooth scroll to target
+          const headerOffset = 64; // header height
+          const elementPosition = targetEl.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+
+          // Update URL hash without jumping
+          history.pushState(null, null, href);
+        }
+      }
+    });
   });
 
   // Close menu on Escape key
@@ -595,9 +623,16 @@ fetchBlogPosts();
       closeMenu();
     }
   });
-})();
 
-/* =================================================
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('open') && 
+        !navLinks.contains(e.target) && 
+        !hamburger.contains(e.target)) {
+      closeMenu();
+    }
+  });
+})();/* =================================================
    12. BACK TO TOP BUTTON
    ================================================= */
 (function initBackToTop() {
