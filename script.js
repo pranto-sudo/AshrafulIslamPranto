@@ -35,7 +35,6 @@
     updateDarkModeIcon(isDark);
   });
 
-  // Restore saved preference
   if (localStorage.getItem('darkMode') === 'true') {
     document.body.classList.add('dark');
     updateDarkModeIcon(true);
@@ -110,52 +109,102 @@ function showSkeleton(containerId, count) {
     {
       name: "SEO & Content Architecture",
       iconClass: "fa-solid fa-magnifying-glass-chart",
-      desc: "Comprehensive Search Engine Optimization, keyword hierarchies, and AdSense-compliant content architecture to rank on Google's first page and drive organic traffic sustainably."
+      overview: "Comprehensive Search Engine Optimization and keyword hierarchies designed to rank your brand on Google's first page sustainably.",
+      bullets: [
+        "<b>Technical SEO Audits:</b> Fixing crawl errors, core web vitals, and schema markup.",
+        "<b>Content Clustering:</b> Building pillar-and-cluster taxonomies for maximum topical authority.",
+        "<b>AdSense & Compliance:</b> Ensuring strict adherence to search engine quality guidelines."
+      ]
     },
     {
       name: "Paid Ads (Google, Meta & TikTok)",
       iconClass: "fa-solid fa-bullhorn",
-      desc: "High-ROI multi-channel ad management across Google Ads, Meta (Facebook/Instagram), and TikTok Ads engineered to lower CPL and maximize customer acquisition."
+      overview: "High-ROI multi-channel ad campaigns engineered to lower your Cost-Per-Lead (CPL) and scale customer acquisition.",
+      bullets: [
+        "<b>Multi-Platform Management:</b> Google Search/PPC, Meta (FB/IG), and TikTok Ads setup.",
+        "<b>Funnel Optimization:</b> Audience targeting, creative testing, and retargeting sequences.",
+        "<b>ROI Tracking:</b> Rigorous attribution setup to ensure positive return on ad spend."
+      ]
     },
     {
       name: "Shopify Store Setup & Optimization",
       iconClass: "fa-solid fa-cart-shopping",
-      desc: "Custom e-commerce storefront development, theme customization, product catalog structuring, and high-conversion UX layout design."
+      overview: "Custom e-commerce storefronts built for high conversions, lightning-fast speed, and seamless user experiences.",
+      bullets: [
+        "<b>Storefront Design:</b> Clean, mobile-first UX layout customized for your niche.",
+        "<b>Catalog Architecture:</b> Structured collections, variants, and inventory tracking.",
+        "<b>Social Integrations:</b> Seamless connection with Facebook, Instagram, and TikTok shops."
+      ]
     },
     {
       name: "Google Merchant Center (GMC) Approval",
       iconClass: "fa-solid fa-triangle-exclamation",
-      desc: "Expert troubleshooting for GMC policy violations, misrepresentation warnings, and error-free product feed optimization to unlock Google Shopping."
+      overview: "Expert troubleshooting to resolve account suspensions, policy violations, and feed errors to unlock Google Shopping.",
+      bullets: [
+        "<b>Policy Audit:</b> Identifying and fixing misrepresentation and policy warnings.",
+        "<b>Feed Optimization:</b> Error-free product data feed synchronization.",
+        "<b>Fast-Track Reinstatement:</b> Direct compliance alignment for quick Google review approval."
+      ]
     },
     {
       name: "GA4 & Conversion Tracking",
       iconClass: "fa-solid fa-chart-pie",
-      desc: "Advanced Google Analytics 4 (GA4) configuration, custom conversion event tracking, and e-commerce attribution setup so you never miss a data point."
+      overview: "Advanced Google Analytics 4 (GA4) configuration and custom event tracking so you never miss a data point.",
+      bullets: [
+        "<b>Event Tracking:</b> Setup for button clicks, form submissions, and purchases.",
+        "<b>E-commerce Attribution:</b> Accurate revenue and funnel drop-off reporting.",
+        "<b>Data Reliability:</b> Clean, privacy-compliant tracking pipelines."
+      ]
     },
     {
       name: "Social Media Marketing",
       iconClass: "fa-solid fa-share-nodes",
-      desc: "Build a loyal community and a brand people trust with strategy-driven organic content, community engagement, and social growth."
+      overview: "Strategy-driven organic content and community management that builds a trusted brand people love to buy from.",
+      bullets: [
+        "<b>Content Calendars:</b> Engaging post strategies tailored to your target audience.",
+        "<b>Community Growth:</b> Active engagement and follower retention tactics.",
+        "<b>Brand Authority:</b> Positioning your business as an industry leader."
+      ]
     },
     {
       name: "Marketing Automation (`n8n` & AI)",
       iconClass: "fa-solid fa-gears",
-      desc: "Next-gen operational scaling using n8n workflow engines and AI prompt engineering to automate lead pipelines, data syncing, and distribution."
+      overview: "Next-gen operational scaling using workflow engines and AI prompt engineering to automate repetitive tasks.",
+      bullets: [
+        "<b>n8n Workflows:</b> Automated data pipelines and lead-nurturing sequences.",
+        "<b>AI Integration:</b> Prompt-engineered AI systems for content and marketing scaling.",
+        "<b>Operational Efficiency:</b> Eliminating manual bottlenecks to cut acquisition costs."
+      ]
     },
     {
       name: "Email Marketing Funnels",
       iconClass: "fa-solid fa-envelope-open-text",
-      desc: "Automated email sequences that nurture leads, build customer relationships, and drive repeat revenue on autopilot."
+      overview: "Automated email sequences that nurture leads, build deep relationships, and drive repeat revenue on autopilot.",
+      bullets: [
+        "<b>Welcome & Nurture Flows:</b> Automated sequences for new subscribers and leads.",
+        "<b>Abandoned Cart Recovery:</b> Re-engaging lost e-commerce shoppers.",
+        "<b>Segmentation:</b> Targeted campaigns based on user behavior and purchase history."
+      ]
     },
     {
       name: "Conversion Rate Optimization (CRO)",
       iconClass: "fa-solid fa-chart-line",
-      desc: "Turn more of your existing website traffic into paying customers with data-backed UX insights, copywriting psychology, and friction reduction."
+      overview: "Turning more of your existing website traffic into paying customers with data-backed UX and copywriting psychology.",
+      bullets: [
+        "<b>Landing Page Reviews:</b> Identifying friction points and conversion blockers.",
+        "<b>Copywriting Psychology:</b> High-intent Call-to-Actions (CTAs) and value propositions.",
+        "<b>UX Alignment:</b> Streamlining user journeys to boost conversion rates."
+      ]
     },
     {
       name: "Growth Strategy & Consulting",
       iconClass: "fa-solid fa-lightbulb",
-      desc: "A custom, data-driven roadmap combining traditional marketing principles with technical execution to scale your business predictably."
+      overview: "A custom, data-driven roadmap combining traditional growth marketing with technical execution to scale predictably.",
+      bullets: [
+        "<b>Market Analysis:</b> Deep dive into competitor positioning and customer intent.",
+        "<b>Actionable Roadmaps:</b> Step-by-step growth blueprints tailored to your budget.",
+        "<b>Consultative Guidance:</b> Direct advisory on scaling your digital footprint."
+      ]
     }
   ];
 
@@ -166,12 +215,11 @@ function showSkeleton(containerId, count) {
     <div class="card">
       <div class="icon"><i class="${service.iconClass}" aria-hidden="true"></i></div>
       <h3>${service.name}</h3>
-      <p>${service.desc.substring(0, 100)}...</p>
+      <p>${service.overview.substring(0, 100)}...</p>
       <button class="learn" data-service-index="${index}" type="button">Learn More &rarr;</button>
     </div>
   `).join('');
 
-  // Service detail modal
   servicesGridEl.addEventListener('click', function(e) {
     const btn = e.target.closest('.learn[data-service-index]');
     if (!btn) return;
@@ -180,7 +228,6 @@ function showSkeleton(containerId, count) {
     const service = serviceDetails[idx];
     if (!service) return;
 
-    // Remove existing temp modal
     const existingModal = document.getElementById('tempServiceModal');
     if (existingModal) existingModal.remove();
 
@@ -188,11 +235,16 @@ function showSkeleton(containerId, count) {
       <div id="tempServiceModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="serviceModalTitle">
         <div class="modal-content">
           <button class="close-modal" aria-label="Close service details">&times;</button>
-          <div class="modal-body">
-            <i class="${service.iconClass} modal-icon" aria-hidden="true"></i>
-            <h2 id="serviceModalTitle">${service.name}</h2>
-            <p style="margin:16px 0; text-align:left;">${service.desc}</p>
-            <h4 style="margin:20px 0 8px;">Ready to take action?</h4>
+          <div class="modal-body" style="text-align: left;">
+            <div style="text-align: center; margin-bottom: 16px;">
+              <i class="${service.iconClass} modal-icon" aria-hidden="true" style="font-size: 2.5rem; color: var(--gold);"></i>
+              <h2 id="serviceModalTitle" style="margin-top: 8px;">${service.name}</h2>
+            </div>
+            <p style="margin-bottom: 16px; color: var(--text-dark); font-weight: 500;">${service.overview}</p>
+            <ul style="margin: 0 0 20px 20px; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+              ${service.bullets.map(bullet => `<li style="margin-bottom: 8px;">${bullet}</li>`).join('')}
+            </ul>
+            <h4 style="margin: 20px 0 10px; text-align: center; color: var(--text-dark);">Ready to take action?</h4>
             <div class="booking-buttons">
               <a href="https://wa.me/8801522104711?text=Hello%20Ashraful,%20I'm%20interested%20in%20your%20${encodeURIComponent(service.name)}%20service.%20Let's%20discuss%20my%20needs!"
                  class="btn btn-primary" style="flex:1;" target="_blank" rel="noopener noreferrer">
@@ -212,7 +264,6 @@ function showSkeleton(containerId, count) {
     tempModal.style.display = 'flex';
     tempModal.setAttribute('aria-hidden', 'false');
 
-    // Close handlers
     tempModal.querySelector('.close-modal').addEventListener('click', () => {
       tempModal.style.display = 'none';
       tempModal.setAttribute('aria-hidden', 'true');
@@ -416,7 +467,6 @@ fetchBlogPosts();
     e.preventDefault();
     clearMessages();
 
-    // Honeypot spam check
     const honeypot = document.getElementById('honeypot').value;
     if (honeypot !== "") {
       showError('Spam detected. Your message was not sent.');
@@ -429,7 +479,6 @@ fetchBlogPosts();
     const service = document.getElementById('service').value;
     const message = document.getElementById('message').value.trim();
 
-    // Validation
     if (!name || !email || !phone || !service || !message) {
       showError('Please fill all required fields.');
       return;
@@ -445,7 +494,6 @@ fetchBlogPosts();
       return;
     }
 
-    // Prepare form data
     const formData = new FormData();
     formData.append('name', name);
     formData.append('email', email);
@@ -490,7 +538,6 @@ fetchBlogPosts();
     if (e) e.preventDefault();
     modalElem.style.display = 'flex';
     modalElem.setAttribute('aria-hidden', 'false');
-    // Focus trap for accessibility
     if (closeModalSpan) closeModalSpan.focus();
   }
 
@@ -507,14 +554,12 @@ fetchBlogPosts();
     closeModalSpan.addEventListener('click', closeModal);
   }
 
-  // Close on backdrop click
   window.addEventListener('click', (event) => {
     if (event.target === modalElem) {
       closeModal();
     }
   });
 
-  // Close on Escape key
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modalElem.style.display === 'flex') {
       closeModal();
@@ -584,12 +629,10 @@ fetchBlogPosts();
 
   hamburger.addEventListener('click', toggleMenu);
 
-  // Handle nav link clicks - smooth scroll to section
   navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
 
-      // Only handle internal anchor links
       if (href && href.startsWith('#')) {
         e.preventDefault();
 
@@ -597,11 +640,9 @@ fetchBlogPosts();
         const targetEl = document.getElementById(targetId);
 
         if (targetEl) {
-          // Close mobile menu first
           closeMenu();
 
-          // Smooth scroll to target
-          const headerOffset = 64; // header height
+          const headerOffset = 64;
           const elementPosition = targetEl.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -610,21 +651,18 @@ fetchBlogPosts();
             behavior: 'smooth'
           });
 
-          // Update URL hash without jumping
           history.pushState(null, null, href);
         }
       }
     });
   });
 
-  // Close menu on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && navLinks.classList.contains('open')) {
       closeMenu();
     }
   });
 
-  // Close menu when clicking outside
   document.addEventListener('click', (e) => {
     if (navLinks.classList.contains('open') && 
         !navLinks.contains(e.target) && 
