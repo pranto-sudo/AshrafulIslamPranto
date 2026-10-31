@@ -108,54 +108,54 @@ function showSkeleton(containerId, count) {
 (function initServices() {
   const serviceDetails = [
     {
-      name: "SEO",
+      name: "SEO & Content Architecture",
       iconClass: "fa-solid fa-magnifying-glass-chart",
-      desc: "Comprehensive Search Engine Optimization to rank on first page, drive organic traffic, and increase conversions sustainably."
+      desc: "Comprehensive Search Engine Optimization, keyword hierarchies, and AdSense-compliant content architecture to rank on Google's first page and drive organic traffic sustainably."
     },
     {
-      name: "Google Ads (PPC)",
-      iconClass: "fa-brands fa-google",
-      desc: "High-ROI Google Ads management. From keyword research to conversion tracking, I maximize your ad spend efficiency."
+      name: "Paid Ads (Google, Meta & TikTok)",
+      iconClass: "fa-solid fa-bullhorn",
+      desc: "High-ROI multi-channel ad management across Google Ads, Meta (Facebook/Instagram), and TikTok Ads engineered to lower CPL and maximize customer acquisition."
     },
     {
-      name: "Meta Ads",
-      iconClass: "fa-brands fa-meta",
-      desc: "Facebook & Instagram ad campaigns engineered to target your ideal audience and generate real business results."
+      name: "Shopify Store Setup & Optimization",
+      iconClass: "fa-solid fa-cart-shopping",
+      desc: "Custom e-commerce storefront development, theme customization, product catalog structuring, and high-conversion UX layout design."
+    },
+    {
+      name: "Google Merchant Center (GMC) Approval",
+      iconClass: "fa-solid fa-triangle-exclamation",
+      desc: "Expert troubleshooting for GMC policy violations, misrepresentation warnings, and error-free product feed optimization to unlock Google Shopping."
+    },
+    {
+      name: "GA4 & Conversion Tracking",
+      iconClass: "fa-solid fa-chart-pie",
+      desc: "Advanced Google Analytics 4 (GA4) configuration, custom conversion event tracking, and e-commerce attribution setup so you never miss a data point."
     },
     {
       name: "Social Media Marketing",
       iconClass: "fa-solid fa-share-nodes",
-      desc: "Build a loyal community and a brand people trust. Strategy-driven content, engagement, and paid social."
+      desc: "Build a loyal community and a brand people trust with strategy-driven organic content, community engagement, and social growth."
     },
     {
-      name: "Email Marketing",
+      name: "Marketing Automation (`n8n` & AI)",
+      iconClass: "fa-solid fa-gears",
+      desc: "Next-gen operational scaling using n8n workflow engines and AI prompt engineering to automate lead pipelines, data syncing, and distribution."
+    },
+    {
+      name: "Email Marketing Funnels",
       iconClass: "fa-solid fa-envelope-open-text",
-      desc: "Automated email funnels that nurture leads, build relationships, and drive repeat revenue."
+      desc: "Automated email sequences that nurture leads, build customer relationships, and drive repeat revenue on autopilot."
     },
     {
-      name: "Content Marketing",
-      iconClass: "fa-solid fa-pen-nib",
-      desc: "Strategic content that builds authority, educates your audience, and attracts the right buyers."
-    },
-    {
-      name: "E-commerce Marketing",
-      iconClass: "fa-solid fa-cart-shopping",
-      desc: "Boost online store sales with optimized funnels, targeted ads, and conversion strategies."
-    },
-    {
-      name: "Conversion Rate Optimization",
+      name: "Conversion Rate Optimization (CRO)",
       iconClass: "fa-solid fa-chart-line",
-      desc: "Turn more of your existing traffic into paying customers with data-backed CRO techniques."
+      desc: "Turn more of your existing website traffic into paying customers with data-backed UX insights, copywriting psychology, and friction reduction."
     },
     {
-      name: "Influencer Marketing",
-      iconClass: "fa-solid fa-handshake-angle",
-      desc: "Partner with the right creators to amplify your brand reach and build trust fast."
-    },
-    {
-      name: "Marketing Strategy",
+      name: "Growth Strategy & Consulting",
       iconClass: "fa-solid fa-lightbulb",
-      desc: "A clear, custom roadmap to scale your business predictably. Comprehensive market analysis and execution plan."
+      desc: "A custom, data-driven roadmap combining traditional marketing principles with technical execution to scale your business predictably."
     }
   ];
 
@@ -352,7 +352,7 @@ async function fetchBlogPosts() {
         if (!imageUrl && post.thumbnail) imageUrl = post.thumbnail;
 
         const imageHtml = imageUrl
-          ? `<img src="${imageUrl}" alt="${post.title}" class="blog-image" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23F9F7F2'/%3E%3Ctext x='50' y='55' text-anchor='middle' fill='%23D4A373' font-size='14'%3E&#128247;%3C/text%3E%3C/svg%3E';">`
+          ? `<img src="${imageUrl}" alt="${post.title}" class="blog-image" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23F9F7F2\'/%3E%3Ctext x=\'50\' y=\'55\' text-anchor=\'middle\' fill=\'%23D4A373\' font-size=\'14\'%3E&#128247;%3C/text%3E%3C/svg%3E';">`
           : `<div class="case-thumb"><i class="fa-solid fa-blog" aria-hidden="true"></i></div>`;
 
         return `
@@ -632,7 +632,9 @@ fetchBlogPosts();
       closeMenu();
     }
   });
-})();/* =================================================
+})();
+
+/* =================================================
    12. BACK TO TOP BUTTON
    ================================================= */
 (function initBackToTop() {
